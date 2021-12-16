@@ -13,11 +13,9 @@ on:
   workflow_dispatch:
 
 env:
-  ACR_NAME: demogaurav.azurecr.io
-  ACR_REPO_NAME: demogaurav.azurecr.io/docker-java-app
-  ARTIFACT_NAME: docker-java-app
-  RESOURCE_GROUP: Gaurav-RG
-  AKS_CLUSTER_NAME: Gaurav-AKS-cluster
+  ACR_NAME: thgamble121621.azurecr.io
+  RESOURCE_GROUP: thgamble121621
+  AKS_CLUSTER_NAME: thgamble121621
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -48,7 +46,7 @@ jobs:
             ./kubernetes/service.yaml
             ./kubernetes/blue-deploy.yaml
           images: |
-            demogaurav.azurecr.io/green-nginx:1
+            thgamble121621.azurecr.io/green-nginx:1
           strategy: blue-green
           traffic-split-method: pod
           action: deploy  #deploy is the default; we will later use this to promote/reject
@@ -82,7 +80,7 @@ jobs:
             ./kubernetes/service.yaml
             ./kubernetes/green-deploy.yaml
           images: |
-            demogaurav.azurecr.io/green-nginx:1
+            thgamble121621.azurecr.io/green-nginx:1
           strategy: blue-green
           traffic-split-method: pod
           action: promote  #deploy is the default; we will later use this to promote/reject
@@ -96,7 +94,7 @@ jobs:
             ./kubernetes/service.yaml
             ./kubernetes/blue-deploy.yaml
           images: |
-            demogaurav.azurecr.io/green-nginx:1
+            thgamble121621.azurecr.io/green-nginx:1
           strategy: blue-green
           traffic-split-method: pod
           action: reject  #deploy is the default; we will later use this to promote/reject
